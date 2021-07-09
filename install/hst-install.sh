@@ -6,7 +6,7 @@
 # Currently Supported Operating Systems:
 #
 #   Debian 9, 10
-#   Ubuntu 16.04, 18.04, 20.04
+#   Ubuntu 18.04, 20.04
 #
 
 # Am I root?
@@ -59,10 +59,10 @@ fi
 no_support_message(){
     echo "****************************************************"
     echo "Your operating system (OS) is not supported by"
-    echo "Hestia Control Panel. Officially supported releases:"
+    echo "Oberon Control Panel. Officially supported releases:"
     echo "****************************************************"
     echo "  Debian 9, 10"
-    echo "  Ubuntu 16.04 LTS, 18.04, 20.04 LTS"
+    echo "  Ubuntu 18.04, 20.04 LTS"
     echo ""
     exit 1;
 }
@@ -74,7 +74,7 @@ fi
 check_wget_curl(){
     # Check wget
     if [ -e '/usr/bin/wget' ]; then
-        wget -q https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install-$type.sh -O hst-install-$type.sh
+        wget -q https://raw.githubusercontent.com/kasperireland/oberon/release/install/hst-install-$type.sh -O hst-install-$type.sh
         if [ "$?" -eq '0' ]; then
             bash hst-install-$type.sh $*
             exit
@@ -86,7 +86,7 @@ check_wget_curl(){
 
     # Check curl
     if [ -e '/usr/bin/curl' ]; then
-        curl -s -O https://raw.githubusercontent.com/hestiacp/hestiacp/release/install/hst-install-$type.sh
+        curl -s -O https://raw.githubusercontent.com/kasperireland/oberon/release/install/hst-install-$type.sh
         if [ "$?" -eq '0' ]; then
             bash hst-install-$type.sh $*
             exit
@@ -99,7 +99,7 @@ check_wget_curl(){
 
 # Check for supported operating system before proceeding with download
 # of OS-specific installer, and throw error message if unsupported OS detected.
-if [[ "$release" =~ ^(9|10|16.04|18.04|20.04)$ ]]; then
+if [[ "$release" =~ ^(9|10|18.04|20.04)$ ]]; then
     check_wget_curl $*
 else
     no_support_message
